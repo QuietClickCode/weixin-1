@@ -11,7 +11,7 @@ import java.util.Arrays;
  */
 public class CheckUtil {
 
-    private static final String token = "Xinglongbing";
+    private static final String token = "zjj";
 
     /**
      * 把拼接后的字符串和signature进行比较

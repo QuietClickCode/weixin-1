@@ -1,6 +1,5 @@
 package com.domiyi.weixin.servlet;
 
-import com.domiyi.weixin.pojo.TextMessage;
 import com.domiyi.weixin.util.CheckUtil;
 import com.domiyi.weixin.util.MessageUtil;
 import org.dom4j.DocumentException;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
-import java.util.Date;
 import java.util.Map;
 
 /**
@@ -51,7 +49,6 @@ public class WeixinServlet  extends HttpServlet{
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         //把微信消息返回给客户端
@@ -66,7 +63,9 @@ public class WeixinServlet  extends HttpServlet{
             String message = null;
             if (MessageUtil.MESSAGE_TEXT.equals(msgType)){
                 //按照关键字进行回复d
-
+                System.out.println(content);
+                System.out.println(toUserName);
+                System.out.println(fromUserName);
                 if ("1".equals(content)){
                     message = MessageUtil.initText(toUserName,fromUserName,MessageUtil.firstMenu());
                 }else if ("2".equals(content)){

@@ -51,10 +51,12 @@ public class WeixinServlet  extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
+        System.out.println(req.toString()+"--------");
         //把微信消息返回给客户端
         PrintWriter out = resp.getWriter();
         try {
             Map<String,String> map = MessageUtil.xmlToMap(req);
+            System.out.println(map);
             String fromUserName = map.get("FromUserName");
             String toUserName = map.get("ToUserName");
             String msgType = map.get("MsgType");
@@ -67,7 +69,8 @@ public class WeixinServlet  extends HttpServlet{
                 System.out.println(toUserName);
                 System.out.println(fromUserName);
                 if ("1".equals(content)){
-                    message = MessageUtil.initText(toUserName,fromUserName,MessageUtil.firstMenu());
+                    /*message = MessageUtil.initText(toUserName,fromUserName,MessageUtil.firstMenu());*/
+                    message = MessageUtil.initText(toUserName,fromUserName,"Hello,World");
                 }else if ("2".equals(content)){
                     message = MessageUtil.initText(toUserName,fromUserName,MessageUtil.secondMenu());
                 }else  if ("?".equals(content) || "?".equals(content)){
@@ -83,7 +86,7 @@ public class WeixinServlet  extends HttpServlet{
             }
 
              System.out.println();
-
+            System.out.println(message+"00000");
              out.print(message);//把消息发送到客户端
 
         } catch (DocumentException e) {

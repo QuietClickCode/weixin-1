@@ -2,6 +2,13 @@ package com.domiyi.weixin.servlet;
 
 import com.domiyi.weixin.util.CheckUtil;
 import com.domiyi.weixin.util.MessageUtil;
+import net.sf.json.JSONObject;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.ParseException;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.dom4j.DocumentException;
 
 import javax.servlet.ServletException;
@@ -39,6 +46,19 @@ public class WeixinServlet  extends HttpServlet{
         }
     }
 
+    public static JSONObject doGetStr(String url) throws ParseException, IOException{
+        DefaultHttpClient client = new DefaultHttpClient();
+        HttpGet httpGet = new HttpGet(url);
+        JSONObject jsonObject = null;
+        HttpResponse httpResponse = client.execute(httpGet);
+        HttpEntity entity = httpResponse.getEntity();
+        if(entity != null){
+            String result = EntityUtils.toString(entity,"UTF-8");
+            jsonObject = JSONObject.fromObject(result);
+        }
+        return jsonObject;
+    }
+
     /**
      * 1value里面真的有值么？--因为这是发送消息，所以发送人，接收人，时间，内容是固定的，所以可以获得value
      * 2
@@ -70,7 +90,13 @@ public class WeixinServlet  extends HttpServlet{
                 System.out.println(fromUserName);
                 if ("1".equals(content)){
                     /*message = MessageUtil.initText(toUserName,fromUserName,MessageUtil.firstMenu());*/
-                    message = MessageUtil.initText(toUserName,fromUserName,"Hello,World");
+                    /*message = MessageUtil.initText(toUserName,fromUserName,"Hello,World");*/
+                    JSONObject jsonObject = doGetStr("https://www.myznsh.com/searchcsdn?wd=%E7%88%B1%E6%83%85");
+                    System.out.println(jsonObject.getString("data"));
+
+
+                    message = MessageUtil.initText(toUserName,fromUserName,jsonObject.getString("data").substring(1,500));
+
                 }else if ("2".equals(content)){
                     message = MessageUtil.initText(toUserName,fromUserName,MessageUtil.secondMenu());
                 }else  if ("?".equals(content) || "?".equals(content)){

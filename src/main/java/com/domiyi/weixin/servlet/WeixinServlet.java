@@ -95,8 +95,8 @@ public class WeixinServlet  extends HttpServlet{
                     System.out.println(jsonObject.getString("data"));
 
 
-                   /* message = MessageUtil.initText(toUserName,fromUserName,jsonObject.getString("data").substring(1,500));*/
-                   message = "哈哈";
+                    /*message = MessageUtil.initText(toUserName,fromUserName,jsonObject.getString("data").substring(1,500));*/
+                    message = MessageUtil.initText(toUserName,fromUserName,"哈哈,success");
 
                 }else if ("2".equals(content)){
                     message = MessageUtil.initText(toUserName,fromUserName,MessageUtil.secondMenu());

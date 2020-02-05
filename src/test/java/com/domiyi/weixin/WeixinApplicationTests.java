@@ -1,7 +1,5 @@
 package com.domiyi.weixin;
 
-import com.domiyi.weixin.po.AccessToken;
-import com.domiyi.weixin.util.WeixinUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,9 +15,9 @@ public class WeixinApplicationTests {
     @Test
     public void contextLoads() throws IOException {
         System.out.println(new Date().getTime());
-        System.out.println(System.currentTimeMillis());
+        /*System.out.println(System.currentTimeMillis());
         AccessToken accessToken = WeixinUtil.getAccessToken();
-        System.out.println(accessToken);
+        System.out.println(accessToken);*/
     }
 
 }

@@ -93,7 +93,7 @@ public class WeixinServlet  extends HttpServlet{
 
 
                 /*message = MessageUtil.initText(toUserName,fromUserName,jsonObject.getString("data").substring(1,500));*/
-                message = MessageUtil.initText(toUserName,fromUserName,jsonObject.getString("data"));
+                message = MessageUtil.initText(toUserName,fromUserName,jsonObject.getString("data").substring(1,500));
                /* if ("1".equals(content)){
                     *//*message = MessageUtil.initText(toUserName,fromUserName,MessageUtil.firstMenu());*//*
                     *//*message = MessageUtil.initText(toUserName,fromUserName,"Hello,World");*//*

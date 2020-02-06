@@ -88,21 +88,27 @@ public class WeixinServlet  extends HttpServlet{
                 System.out.println(content);
                 System.out.println(toUserName);
                 System.out.println(fromUserName);
-                if ("1".equals(content)){
-                    /*message = MessageUtil.initText(toUserName,fromUserName,MessageUtil.firstMenu());*/
-                    /*message = MessageUtil.initText(toUserName,fromUserName,"Hello,World");*/
+                JSONObject jsonObject = doGetStr("https://www.myznsh.com/searchcsdn?wd=" + content);
+                System.out.println(jsonObject.getString("data"));
+
+
+                /*message = MessageUtil.initText(toUserName,fromUserName,jsonObject.getString("data").substring(1,500));*/
+                message = MessageUtil.initText(toUserName,fromUserName,jsonObject.getString("data"));
+               /* if ("1".equals(content)){
+                    *//*message = MessageUtil.initText(toUserName,fromUserName,MessageUtil.firstMenu());*//*
+                    *//*message = MessageUtil.initText(toUserName,fromUserName,"Hello,World");*//*
                     JSONObject jsonObject = doGetStr("https://www.myznsh.com/searchcsdn?wd=%E7%88%B1%E6%83%85");
                     System.out.println(jsonObject.getString("data"));
 
 
-                    /*message = MessageUtil.initText(toUserName,fromUserName,jsonObject.getString("data").substring(1,500));*/
+                    *//*message = MessageUtil.initText(toUserName,fromUserName,jsonObject.getString("data").substring(1,500));*//*
                     message = MessageUtil.initText(toUserName,fromUserName,content);
 
                 }else if ("2".equals(content)){
                     message = MessageUtil.initText(toUserName,fromUserName,MessageUtil.secondMenu());
                 }else  if ("?".equals(content) || "?".equals(content)){
                     message = MessageUtil.initText(toUserName,fromUserName,MessageUtil.menuText());
-                }
+                }*/
 
                 //以下是做和微信编辑模式下一样的样式
             }else if (MessageUtil.MESSAGE_EVENT.equals(msgType)){

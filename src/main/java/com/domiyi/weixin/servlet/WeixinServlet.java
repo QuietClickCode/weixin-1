@@ -102,8 +102,8 @@ public class WeixinServlet extends HttpServlet {
                 System.out.println(content);
                 System.out.println(toUserName);
                 System.out.println(fromUserName);
-                JSONObject jsonObject = doGetStr("https://www.myznsh.com/searchcsdn?wd=" + content);
-                System.out.println(jsonObject.getString("data"));
+                //JSONObject jsonObject = doGetStr("https://www.myznsh.com/searchcsdn?wd=" + content);
+                //System.out.println(jsonObject.getString("data"));
                 //方法一：添加消息到消息队列
                 //jmsMessagingTemplate.convertAndSend(queue, content);
                 //方法二：这种方式不需要手动创建queue，系统会自行创建名为test的队列
